@@ -1,3 +1,4 @@
+// обгортка для коннтроллерів із загальним блоком try...catch
 const controllersWrapper = (ctrl) => {
   const func = async (req, res, next) => {
     try {

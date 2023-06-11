@@ -1,3 +1,4 @@
+// схема валідаціі запитів за допомогою бібліотеки joi
 const Joi = require("joi");
 
 const addSchema = Joi.object({
