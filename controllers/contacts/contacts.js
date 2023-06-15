@@ -1,13 +1,12 @@
-const { HttpError, controllersWrapper } = require("../helpes");
+const { HttpError, controllersWrapper } = require("../../helpes");
 
-const { Contact } = require("../models/contact");
+const { Contact } = require("../../models/contact");
 
 const getAllContacts = async (_, res) => {
   const result = await Contact.find();
   console.log("Contact", Contact);
   res.json(result);
 };
-
 const getById = async (req, res) => {
   const { contactId } = req.params;
   const result = await Contact.findById(contactId);
@@ -17,7 +16,7 @@ const getById = async (req, res) => {
   }
 };
 
-const add = async (req, res) => {
+const addContact = async (req, res) => {
   const result = await Contact.create(req.body);
   res.status(201).json(result);
 };
@@ -76,7 +75,7 @@ const updateStatusContact = async (req, res) => {
 module.exports = {
   getAllContacts: controllersWrapper(getAllContacts),
   getById: controllersWrapper(getById),
-  add: controllersWrapper(add),
+  addContact: controllersWrapper(addContact),
   updateById: controllersWrapper(updateById),
   deleteById: controllersWrapper(deleteById),
   updateStatusContact: controllersWrapper(updateStatusContact),

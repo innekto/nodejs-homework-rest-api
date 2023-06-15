@@ -9,17 +9,17 @@ const { addSchema, updateFavoriteSchema } = require("../../schemas/contacts");
 const {
   getAllContacts,
   getById,
-  add,
+  addContact,
   updateById,
   updateStatusContact,
   deleteById,
-} = require("../../controllers/contacts");
+} = require("../../controllers/index");
 
 router.get("/", getAllContacts);
 
 router.get("/:contactId", isValidId, getById);
 
-router.post("/", validateBody(addSchema, "Set name for contact"), add);
+router.post("/", validateBody(addSchema, "Set name for contact"), addContact);
 
 router.delete("/:contactId", isValidId, deleteById);
 
