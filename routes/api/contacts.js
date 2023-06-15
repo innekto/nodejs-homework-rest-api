@@ -2,13 +2,13 @@ const express = require("express");
 
 const router = express.Router();
 
-// const { validateBody } = require("../../middlewares");
+const { validateBody } = require("../../middlewares");
 
-// const { addSchema } = require("../../schemas/books");
+const { addSchema } = require("../../schemas/contacts");
 
 const {
   getAllContacts,
-  // getById,
+  getById,
   add,
   // updateById,
   // deleteById,
@@ -16,9 +16,9 @@ const {
 
 router.get("/", getAllContacts);
 
-// router.get("/:contactId", getById);
+router.get("/:contactId", getById);
 
-router.post("/", add);
+router.post("/", validateBody(addSchema, "Set name for contact"), add);
 
 // router.delete("/:contactId", deleteById);
 

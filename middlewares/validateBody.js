@@ -4,7 +4,7 @@
 const { HttpError } = require("../helpes");
 
 const validateBody = (schema, message) => {
-  const func = (req, res, next) => {
+  const func = (req, _, next) => {
     const { error } = schema.validate(req.body);
     if (error) {
       next(HttpError(400, message));
