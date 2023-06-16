@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
-const { handleMongooseError } = require("../helpes");
-const { phoneNumberValidation } = require("../helpes");
+const { handleMongooseError } = require("../helpers");
+const { phoneNumberValidation } = require("../helpers");
 //  схема контакту
 const contactSchema = new Schema(
   {

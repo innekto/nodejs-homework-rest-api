@@ -1,7 +1,7 @@
 // загальне тіло валідаціїї запиту, яке приймає в себе схему валідації,
 // та видає помилку якщо не бракує якогось поля у запиті
 
-const { HttpError } = require("../helpes");
+const { HttpError } = require("../helpers");
 
 const validateBody = (schema, message) => {
   const func = (req, _, next) => {

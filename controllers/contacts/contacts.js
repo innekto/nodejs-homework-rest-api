@@ -1,4 +1,4 @@
-const { HttpError, controllersWrapper } = require("../../helpes");
+const { HttpError, controllersWrapper } = require("../../helpers");
 
 const { Contact } = require("../../models/contact");
 
