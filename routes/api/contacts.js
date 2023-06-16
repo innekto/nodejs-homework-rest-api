@@ -15,20 +15,16 @@ const {
   deleteById,
 } = require("../../controllers/index");
 
-router.get("/", getAllContacts);
+router
+  .route("/")
+  .get(getAllContacts)
+  .post(validateBody(addSchema, "Set name for contact"), addContact);
 
-router.get("/:contactId", isValidId, getById);
-
-router.post("/", validateBody(addSchema, "Set name for contact"), addContact);
-
-router.delete("/:contactId", isValidId, deleteById);
-
-router.put(
-  "/:contactId",
-  isValidId,
-  validateBody(addSchema, "missing fields"),
-  updateById
-);
+router
+  .route("/:contactId")
+  .get(isValidId, getById)
+  .delete(isValidId, deleteById)
+  .put(isValidId, validateBody(addSchema, "missing fields"), updateById);
 
 router.patch(
   "/:contactId/favorite",
