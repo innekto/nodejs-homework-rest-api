@@ -2,30 +2,42 @@ const express = require("express");
 
 const router = express.Router();
 
-const { validateBody } = require("../../middlewares");
+const { validateBody, isValidId } = require("../../middlewares");
 
-const { addSchema } = require("../../schemas/books");
+const {
+  addSchema,
+  updateFavoriteSchema,
+  updateContactSchema,
+} = require("../../schemas/contacts");
 
 const {
   getAllContacts,
   getById,
-  add,
+  addContact,
   updateById,
+  updateStatusContact,
   deleteById,
-} = require("../../controllers/contacts");
+} = require("../../controllers/index");
 
-router.get("/", getAllContacts);
+router
+  .route("/")
+  .get(getAllContacts)
+  .post(validateBody(addSchema, "Set name for contact"), addContact);
 
-router.get("/:contactId", getById);
+// встановлюємо middleware-функцію isValidId для всіх HTTP-запитів,
+// які співпадають з маршрутом "/:contactId"яка перевіряє валідність id.
+router.use("/:contactId", isValidId);
+router
+  .route("/:contactId")
+  .get(getById)
+  .delete(deleteById)
+  .put(validateBody(updateContactSchema, "missing fields"), updateById);
 
-router.post("/", validateBody(addSchema, "missing required name field"), add);
-
-router.delete("/:contactId", deleteById);
-
-router.put(
-  "/:contactId",
-  validateBody(addSchema, "missing fields"),
-  updateById
+router.patch(
+  "/:contactId/favorite",
+  isValidId,
+  validateBody(updateFavoriteSchema, "missing field favorite"),
+  updateStatusContact
 );
 
 module.exports = router;
