@@ -12,12 +12,12 @@ const {
 
 const {
   getAllContacts,
-  getById,
+  getContactById,
   addContact,
-  updateById,
+  updateContactById,
   updateStatusContact,
-  deleteById,
-} = require("../../controllers/index");
+  deleteContactById,
+} = require("../../controllers");
 
 router
   .route("/")
@@ -29,9 +29,9 @@ router
 router.use("/:contactId", isValidId);
 router
   .route("/:contactId")
-  .get(getById)
-  .delete(deleteById)
-  .put(validateBody(updateContactSchema, "missing fields"), updateById);
+  .get(getContactById)
+  .delete(deleteContactById)
+  .put(validateBody(updateContactSchema, "missing fields"), updateContactById);
 
 router.patch(
   "/:contactId/favorite",
