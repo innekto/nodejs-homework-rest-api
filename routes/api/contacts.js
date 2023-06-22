@@ -8,7 +8,7 @@ const {
   addSchema,
   updateFavoriteSchema,
   updateContactSchema,
-} = require("../../schemas/contacts");
+} = require("../../schemas");
 
 const {
   getAllContacts,
