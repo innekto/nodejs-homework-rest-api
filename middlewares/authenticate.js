@@ -22,8 +22,8 @@ const authenticate = async (req, res, next) => {
     const { id } = jwt.verify(token, SECRET_KEY);
     // знаходимо юзера з таким id якшо він є
     const user = await User.findById(id);
-    // якщо немає то викидаємо помилку
-    if (!user) {
+    // якщо немає або немаю токену або токен юзера не дорівнює токену який нам прийшов то викидаємо помилку
+    if (!user || !user.token || user.token !== token) {
       next(HttpError(401, "Not authorized"));
     }
     // записуємо інфо про юзера щоб розуміти хто робить запити
