@@ -8,6 +8,7 @@ const cors = require("cors");
 require("dotenv").config();
 // імпотруємо маршрутизатор
 const contactsRouter = require("./routes/api/contacts");
+const usersRouter = require("./routes/api/users");
 
 const app = express();
 //  формат логування в залежності від середовища виконання.
@@ -20,6 +21,8 @@ app.use(cors());
 app.use(express.json());
 // обробляємо запити на шляху "/api/contacts" за допомогою роутера contactsRouter.
 app.use("/api/contacts", contactsRouter);
+app.use("/api/users", usersRouter);
+
 //  middleware, який відповідає за обробку запитів, які не відповідають жодному маршруту.
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

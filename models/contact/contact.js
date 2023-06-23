@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
-const { handleMongooseError } = require("../helpers");
-const { phoneNumberValidation } = require("../helpers");
+const { handleMongooseError } = require("../../helpers");
+const { phoneNumberValidation } = require("../../helpers");
 //  схема контакту
 const contactSchema = new Schema(
   {
@@ -20,8 +20,13 @@ const contactSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
   },
-  { versionkey: false, timestamps: true } // убираємо версію та втановлюємо часові рамки створення та редагування контакту
+  { versionKey: false, timestamps: true } // убираємо версію та втановлюємо часові рамки створення та редагування контакту
 );
 
 // якщо при збереженні нового контакту станеться помилка то спрацьовує handleMongooseError

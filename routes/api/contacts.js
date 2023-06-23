@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const { validateBody, isValidId } = require("../../middlewares");
+const { validateBody, isValidId, authenticate } = require("../../middlewares");
 
 const {
   addSchema,
@@ -19,6 +19,9 @@ const {
   deleteContactById,
 } = require("../../controllers");
 
+// встановлюємо middleware-функцію authenticate для всіх HTTP-запитів,
+// які співпадають з маршрутом "/" яка перевіряє чи залогінений юзер.
+router.use("/", authenticate);
 router
   .route("/")
   .get(getAllContacts)
@@ -26,7 +29,8 @@ router
 
 // встановлюємо middleware-функцію isValidId для всіх HTTP-запитів,
 // які співпадають з маршрутом "/:contactId"яка перевіряє валідність id.
-router.use("/:contactId", isValidId);
+// та middleware-функцію authenticate
+router.use("/:contactId", authenticate, isValidId);
 router
   .route("/:contactId")
   .get(getContactById)
@@ -35,6 +39,7 @@ router
 
 router.patch(
   "/:contactId/favorite",
+  authenticate,
   isValidId,
   validateBody(updateFavoriteSchema, "missing field favorite"),
   updateStatusContact
