@@ -5,7 +5,7 @@ const getAllContacts = async (req, res) => {
   const { _id: owner } = req.user;
   // ===================пагінація=============== //
   // витягуємо поля page та limit
-  const { page = 1, limit = 10 } = req.query;
+  const { page = 1, limit = 20 } = req.query;
   // параметр skip вказує скільки треба пропустити елементів для віддачі першрого результату
   const skip = (page - 1) * limit;
   // ===================пагінація=============== //
