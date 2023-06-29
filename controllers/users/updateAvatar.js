@@ -1,8 +1,8 @@
 const path = require("path");
 const fs = require("fs/promises");
-const Jimp = require("jimp");
+
 const { User } = require("../../models");
-const { controllersWrapper } = require("../../helpers");
+const { controllersWrapper, processAvatar } = require("../../helpers");
 
 const avatarsDir = path.join(__dirname, "../../", "public", "avatars");
 
@@ -21,16 +21,7 @@ const updateAvatar = async (req, res) => {
 
   const avatarUrl = path.join("avatars", newFileName);
 
-  const avatar = await Jimp.read(resultUpload);
-
-  avatar
-    .autocrop()
-    .contain(
-      250,
-      250,
-      Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE
-    );
-  await avatar.writeAsync(resultUpload);
+  processAvatar(resultUpload);
 
   await User.findByIdAndUpdate(_id, { avatarUrl });
 

@@ -5,7 +5,7 @@ const {
   phoneNumberValidation,
 } = require("./contacts");
 
-const { emailRegexp } = require("./users");
+const { emailRegexp, processAvatar } = require("./users");
 
 module.exports = {
   HttpError,
@@ -13,4 +13,5 @@ module.exports = {
   handleMongooseError,
   phoneNumberValidation,
   emailRegexp,
+  processAvatar,
 };
