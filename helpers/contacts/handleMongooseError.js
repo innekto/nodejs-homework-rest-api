@@ -1,6 +1,11 @@
 const handleMongooseError = (err, data, next) => {
-  err.status = 400;
-  next(err);
+  const { code, name } = err;
+
+  const status = name === "MongoServerError" && code === 11000 ? 409 : 400;
+
+  err.status = status;
+  err.message = "email must be unique!";
+  next();
 };
 
 module.exports = {

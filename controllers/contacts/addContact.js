@@ -1,9 +1,12 @@
 const { controllersWrapper } = require("../../helpers");
 
-const { Contact } = require("../../models/contact");
+const { Contact } = require("../../models/contact/contact");
 
 const addContact = async (req, res) => {
-  const newContact = await Contact.create(req.body);
+  // присвоюємо змінній owner значення властивості _id
+  // щоб не використовувати req.user._id кожного разу коли знадобиться
+  const { _id: owner } = req.user;
+  const newContact = await Contact.create({ ...req.body, owner });
   res.status(201).json(newContact);
 };
 

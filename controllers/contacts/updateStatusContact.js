@@ -1,6 +1,6 @@
 const { HttpError, controllersWrapper } = require("../../helpers");
 
-const { Contact } = require("../../models/contact");
+const { Contact } = require("../../models/contact/contact");
 
 const updateStatusContact = async (req, res) => {
   const { contactId } = req.params;
