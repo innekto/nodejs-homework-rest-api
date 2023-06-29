@@ -6,9 +6,10 @@ const {
   loginUser,
   getCurrentUser,
   logoutUser,
+  updateAvatar,
 } = require("../../controllers");
 
-const { validateUserBody, authenticate } = require("../../middlewares");
+const { validateUserBody, authenticate, upload } = require("../../middlewares");
 const { registrationSchema, loginSchema } = require("../../schemas/users");
 
 // signup
@@ -22,5 +23,7 @@ router.get("/current", authenticate, getCurrentUser);
 
 // logout
 router.post("/logout", authenticate, logoutUser);
+
+router.patch("/avatars", authenticate, upload.single("avatar"), updateAvatar);
 
 module.exports = router;
