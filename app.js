@@ -19,6 +19,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 //  middleware для обробки JSON-даних, надісланих у тілі запиту.
 app.use(express.json());
+app.use(express.static("public"));
 // обробляємо запити на шляху "/api/contacts" за допомогою роутера contactsRouter.
 app.use("/api/contacts", contactsRouter);
 app.use("/api/users", usersRouter);

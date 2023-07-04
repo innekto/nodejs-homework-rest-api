@@ -1,3 +1,3 @@
 const { emailRegexp } = require("./emailRegexp");
-
-module.exports = { emailRegexp };
+const { processAvatar } = require("./avatarRefactor");
+module.exports = { emailRegexp, processAvatar };
