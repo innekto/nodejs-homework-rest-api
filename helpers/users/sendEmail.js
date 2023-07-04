@@ -12,6 +12,18 @@ const nodemailerConfig = {
   },
 };
 
+// const nodemailerConfig = {
+//   service: "gmail",
+//   host: "smtp.gmail.com",
+//   port: 587,
+//   secure: true,
+//   //   secureConnection: false,
+//   auth: {
+//     user: "virchenko.vlad.2021@gmail.com",
+//     pass: "nenadoN1chegonety",
+//   },
+// };
+
 const transport = nodemailer.createTransport(nodemailerConfig);
 
 const sendEmail = async (data) => {
