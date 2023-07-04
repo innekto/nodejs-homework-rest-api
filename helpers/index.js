@@ -5,7 +5,7 @@ const {
   phoneNumberValidation,
 } = require("./contacts");
 
-const { emailRegexp, processAvatar } = require("./users");
+const { emailRegexp, processAvatar, sendEmail } = require("./users");
 
 module.exports = {
   HttpError,
@@ -14,4 +14,5 @@ module.exports = {
   phoneNumberValidation,
   emailRegexp,
   processAvatar,
+  sendEmail,
 };
