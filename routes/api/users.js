@@ -21,7 +21,7 @@ const {
 // signup
 router.post("/register", validateUserBody(registrationSchema), registerUser);
 
-router.get("/verify:verificationToken", verifyEmail);
+router.get("/verify/:verificationToken", verifyEmail);
 
 router.post("/verify", validateUserBody(emailSchema), resendVerifyEmail);
 // signin
